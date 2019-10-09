@@ -9,8 +9,23 @@
 #  ysenih@erpya.com                                                           ##
 ################################################################################
 
-cd /opt/Adempiere/utils
-./RUN_Server2.sh
-tail -f /dev/null
 
+source /etc/profile
+
+if [ -z "$ISSETUP" ]
+then
+    cd $ADEMPIERE_HOME
+	sed -i "s/ADEMPIERE_DB_SERVER=localhost/ADEMPIERE_DB_SERVER=$ADEMPIERE_DB_HOST/g" AdempiereEnv.properties
+	sed -i "s/ADEMPIERE_DB_PORT=5432/ADEMPIERE_DB_PORT=$ADEMPIERE_DB_PORT/g" AdempiereEnv.properties 
+	sed -i "s/ADEMPIERE_DB_NAME=adempiere/ADEMPIERE_DB_NAME=$ADEMPIERE_DB_NAME/g" AdempiereEnv.properties
+	sed -i "s/ADEMPIERE_DB_USER=adempiere/ADEMPIERE_DB_USER=$ADEMPIERE_DB_USER/g" AdempiereEnv.properties
+	sed -i "s/ADEMPIERE_DB_PASSWORD=adempiere/ADEMPIERE_DB_PASSWORD=$ADEMPIERE_DB_PASSWORD/g" AdempiereEnv.properties
+	sed -i "s/ADEMPIERE_DB_SYSTEM=postgres/ADEMPIERE_DB_SYSTEM=$ADEMPIERE_DB_ADMIN_PASSWORD/g" AdempiereEnv.properties
+	sh RUN_silentsetup.sh
+	
+	echo "ISSETUP=Y" >> /etc/profile
+	echo "export ISSETUP" >> /etc/profile 
+fi
+
+service adempiere start && tail -f /dev/null
 exit 0
