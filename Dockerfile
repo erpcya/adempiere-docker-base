@@ -41,7 +41,9 @@ RUN sed -i "s/ADEMPIERE_DB_USER=adempiere/ADEMPIERE_DB_USER=$ADEMPIERE_DB_USER/g
 RUN sed -i "s/ADEMPIERE_DB_PASSWORD=adempiere/ADEMPIERE_DB_PASSWORD=$ADEMPIERE_DB_PASSWORD/g" /opt/Adempiere/AdempiereEnvTemplate.properties
 RUN sed -i "s/ADEMPIERE_DB_SYSTEM=postgres/ADEMPIERE_DB_SYSTEM=$ADEMPIERE_DB_ADMIN_PASSWORD/g" /opt/Adempiere/AdempiereEnvTemplate.properties
 RUN sed -i "s/ADEMPIERE_KEYSTORE=C*/ADEMPIERE_KEYSTORE=\/data\/app\/Adempiere\/keystore\/myKeystore/g" /opt/Adempiere/AdempiereEnvTemplate.properties
-RUN sed -i "s/ADEMPIERE_WEB_ALIAS=localhost/ADEMPIERE_DB_SYSTEM=$(hostname)/g" /opt/Adempiere/AdempiereEnvTemplate.properties && \
+RUN sed -i "s/ADEMPIERE_WEB_ALIAS=localhost/ADEMPIERE_DB_SYSTEM=$(hostname)/g" /opt/Adempiere/AdempiereEnvTemplate.properties
+RUN sed -i "s/ADEMPIERE_APPS_TYPE=tomcat/ADEMPIERE_APPS_TYPE=jboss/g" /opt/Adempiere/AdempiereEnvTemplate.properties
+RUN sed -i "s/ADEMPIERE_APPS_DEPLOY=\/opt\/Adempiere\/tomcat\/webapps/ADEMPIERE_APPS_DEPLOY=\/opt\/Adempiere\/jboss\/server\/adempiere\/deploy/g" /opt/Adempiere/AdempiereEnvTemplate.properties && \
 JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64" && \
 cd /opt/Adempiere && \
 cp AdempiereEnvTemplate.properties AdempiereEnv.properties && \
