@@ -12,7 +12,7 @@ ENV ADEMPIERE_WEB_PORT 8888
 ENV OPT_DIR /opt
 ENV ADEMPIERE_HOME /opt/Adempiere
 ENV ADEMPIERE_RELEASE_URL https://github.com/erpcya/adempiere/releases/download
-ENV ADEMPIERE_RELEASE_NAME 3.9.3-rs-1.1
+ENV ADEMPIERE_RELEASE_NAME 3.9.3-rs-1.3
 ENV ADEMPIERE_BINARY_NAME Adempiere_393LTS.tar.gz
 
 #Health Check
@@ -40,7 +40,9 @@ RUN cd $ADEMPIERE_HOME && \
 	sed -i "s@JAVA_HOME=C.*@JAVA_HOME=$JAVA_HOME@" AdempiereEnv.properties && \
 	sed -i "s/ADEMPIERE_JAVA_OPTIONS=-Xms64M -Xmx512M/ADEMPIERE_JAVA_OPTIONS=-Xms1024M -Xmx4096M/g" AdempiereEnv.properties && \
 	sed -i "s/ADEMPIERE_KEYSTORE=C*/ADEMPIERE_KEYSTORE=\/data\/app\/Adempiere\/keystore\/myKeystore/g" AdempiereEnv.properties && \
-	sed -i "s/ADEMPIERE_WEB_ALIAS=localhost/ADEMPIERE_DB_SYSTEM=$(hostname)/g" AdempiereEnv.properties 
+	sed -i "s/ADEMPIERE_WEB_ALIAS=localhost/ADEMPIERE_DB_SYSTEM=$(hostname)/g" AdempiereEnv.properties && \
+	sed -i "s/ADEMPIERE_APPS_TYPE=tomcat/ADEMPIERE_APPS_TYPE=jboss/g" /opt/Adempiere/AdempiereEnvTemplate.properties && \
+	sed -i "s/ADEMPIERE_APPS_DEPLOY=\/opt\/Adempiere\/tomcat\/webapps/ADEMPIERE_APPS_DEPLOY=\/opt\/Adempiere\/jboss\/server\/adempiere\/deploy/g" /opt/Adempiere/AdempiereEnvTemplate.properties
 
 #Remove Compress Binary
 RUN rm $OPT_DIR/$ADEMPIERE_BINARY_NAME
