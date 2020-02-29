@@ -12,13 +12,13 @@ ENV ADEMPIERE_WEB_PORT 8888
 ENV OPT_DIR /opt
 ENV ADEMPIERE_HOME /opt/Adempiere
 ENV ADEMPIERE_RELEASE_URL https://github.com/erpcya/adempiere/releases/download
-ENV ADEMPIERE_RELEASE_NAME 3.9.3-rs-1.3
+ENV ADEMPIERE_RELEASE_NAME 3.9.3-rs-1.5
 ENV ADEMPIERE_BINARY_NAME Adempiere_393LTS.tar.gz
 
 #Health Check
 HEALTHCHECK --interval=3m --timeout=3s --retries=3 \
   CMD curl -f http://localhost:$ADEMPIERE_WEB_PORT/ || exit 1
-  
+
 #Set Workdir
 WORKDIR $ADEMPIERE_HOME
 
@@ -52,7 +52,7 @@ RUN cd $OPT_DIR && \
 	echo "ADEMPIERE_HOME=$ADEMPIERE_HOME" >> /root/.bashrc  && \
 	echo "JAVA_HOME=$JAVA_HOME" >> /root/.bashrc  && \
 	echo "export JAVA_HOME" >> /root/.bashrc  && \
-	echo "export ADEMPIERE_HOME" >> /root/.bashrc  
+	echo "export ADEMPIERE_HOME" >> /root/.bashrc
 
 RUN cd $ADEMPIERE_HOME && \
 	cp utils/unix/adempiere_Debian.sh utils/unix/adempiere && \
