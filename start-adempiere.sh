@@ -21,7 +21,8 @@ then
 	sed -i "s/ADEMPIERE_DB_USER=adempiere/ADEMPIERE_DB_USER=$ADEMPIERE_DB_USER/g" AdempiereEnv.properties
 	sed -i "s/ADEMPIERE_DB_PASSWORD=adempiere/ADEMPIERE_DB_PASSWORD=$ADEMPIERE_DB_PASSWORD/g" AdempiereEnv.properties
 	sed -i "s/ADEMPIERE_DB_SYSTEM=postgres/ADEMPIERE_DB_SYSTEM=$ADEMPIERE_DB_ADMIN_PASSWORD/g" AdempiereEnv.properties
-	sed -i "s/ADEMPIERE_WEB_ALIAS=localhost/ADEMPIERE_DB_SYSTEM=$(hostname)/g" AdempiereEnv.properties
+	sed -i "s/ADEMPIERE_WEB_ALIAS=localhost/ADEMPIERE_WEB_ALIAS=$(hostname)/g" AdempiereEnv.properties
+	sed -i "s/ADEMPIERE_APPS_SERVER=localhost/ADEMPIERE_APPS_SERVER=$(hostname)/g" AdempiereEnv.properties
 	sh RUN_silentsetup.sh
 	
 	echo "ISSETUP=Y" >> /etc/profile
