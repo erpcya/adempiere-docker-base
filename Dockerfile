@@ -40,7 +40,6 @@ RUN cd $ADEMPIERE_HOME && \
 	sed -i "s@JAVA_HOME=C.*@JAVA_HOME=$JAVA_HOME@" AdempiereEnv.properties && \
 	sed -i "s/ADEMPIERE_JAVA_OPTIONS=-Xms64M -Xmx512M/ADEMPIERE_JAVA_OPTIONS=-Xms1024M -Xmx4096M/g" AdempiereEnv.properties && \
 	sed -i "s/ADEMPIERE_KEYSTORE=C*/ADEMPIERE_KEYSTORE=\/data\/app\/Adempiere\/keystore\/myKeystore/g" AdempiereEnv.properties && \
-	sed -i "s/ADEMPIERE_WEB_ALIAS=localhost/ADEMPIERE_DB_SYSTEM=$(hostname)/g" AdempiereEnv.properties && \
 	sed -i "s/ADEMPIERE_APPS_SERVER=localhost/ADEMPIERE_APPS_SERVER=$(hostname)/g" AdempiereEnv.properties && \
 	sed -i "s/ADEMPIERE_APPS_TYPE=tomcat/ADEMPIERE_APPS_TYPE=jboss/g" /opt/Adempiere/AdempiereEnv.properties && \
 	sed -i "s/ADEMPIERE_APPS_DEPLOY=\/opt\/Adempiere\/tomcat\/webapps/ADEMPIERE_APPS_DEPLOY=\/opt\/Adempiere\/jboss\/server\/adempiere\/deploy/g" /opt/Adempiere/AdempiereEnv.properties
