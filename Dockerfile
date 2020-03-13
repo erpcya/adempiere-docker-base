@@ -15,6 +15,9 @@ ENV ADEMPIERE_RELEASE_URL https://github.com/erpcya/adempiere/releases/download
 ENV ADEMPIERE_RELEASE_NAME 3.9.3-rs-1.5
 ENV ADEMPIERE_BINARY_NAME Adempiere_393LTS.tar.gz
 
+#Health Check
+HEALTHCHECK --interval=3m --timeout=3s --retries=3 \
+  CMD curl -f http://localhost:$ADEMPIERE_WEB_PORT/ || exit 1
 
 #Set Workdir
 WORKDIR $ADEMPIERE_HOME
