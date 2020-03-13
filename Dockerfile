@@ -17,7 +17,7 @@ ENV ADEMPIERE_BINARY_NAME Adempiere_393LTS.tar.gz
 
 #Health Check
 HEALTHCHECK --interval=3m --timeout=3s --retries=3 \
-  CMD curl -f http://localhost:$ADEMPIERE_WEB_PORT/ || exit 1
+  CMD curl -f http://$(hostname):$ADEMPIERE_WEB_PORT/ || exit 1
 
 #Set Workdir
 WORKDIR $ADEMPIERE_HOME
