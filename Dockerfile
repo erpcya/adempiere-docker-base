@@ -1,4 +1,4 @@
-FROM openjdk:8-jdk
+FROM openjdk:8-jdk-alpine
 MAINTAINER Yamel Senih "ysenih@erpya.com"
 COPY start-adempiere.sh /opt/
 
@@ -22,9 +22,16 @@ HEALTHCHECK --interval=3m --timeout=3s --retries=3 \
 #Set Workdir
 WORKDIR $ADEMPIERE_HOME
 
+#Install needed packages
+RUN apk --no-cache add wget
+RUN apk --no-cache add unzip
+RUN apk --no-cache add sed
+RUN apk --no-cache add openrc
+
 #Get ADempiere Binary
-RUN cd $OPT_DIR && \
-wget -c $ADEMPIERE_RELEASE_URL/$ADEMPIERE_RELEASE_NAME/$ADEMPIERE_BINARY_NAME
+COPY Adempiere_393LTS.tar.gz /opt
+#RUN cd $OPT_DIR && \
+#wget -c $ADEMPIERE_RELEASE_URL/$ADEMPIERE_RELEASE_NAME/$ADEMPIERE_BINARY_NAME
 
 #De-compress ADempiere Binary
 RUN cd $OPT_DIR && \
@@ -61,7 +68,7 @@ RUN cd $ADEMPIERE_HOME && \
 	mv utils/unix/adempiere /etc/init.d/ && \
 	cd /etc/init.d/ && \
 	chmod +x adempiere && \
-	update-rc.d adempiere defaults 99
+	rc-update add adempiere default
 
 #Start Adempiere
 CMD $OPT_DIR/start-adempiere.sh
