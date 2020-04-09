@@ -29,9 +29,8 @@ RUN apk --no-cache add sed
 RUN apk --no-cache add openrc
 
 #Get ADempiere Binary
-COPY Adempiere_393LTS.tar.gz /opt
-#RUN cd $OPT_DIR && \
-#wget -c $ADEMPIERE_RELEASE_URL/$ADEMPIERE_RELEASE_NAME/$ADEMPIERE_BINARY_NAME
+RUN cd $OPT_DIR && \
+wget -c $ADEMPIERE_RELEASE_URL/$ADEMPIERE_RELEASE_NAME/$ADEMPIERE_BINARY_NAME
 
 #De-compress ADempiere Binary
 RUN cd $OPT_DIR && \
