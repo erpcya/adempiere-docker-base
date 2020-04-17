@@ -12,7 +12,7 @@ ENV ADEMPIERE_WEB_PORT 8888
 ENV OPT_DIR /opt
 ENV ADEMPIERE_HOME /opt/Adempiere
 ENV ADEMPIERE_RELEASE_URL https://github.com/erpcya/adempiere/releases/download
-ENV ADEMPIERE_RELEASE_NAME 3.9.3-rs-1.5
+ENV ADEMPIERE_RELEASE_NAME 3.9.3-rs-1.6
 ENV ADEMPIERE_BINARY_NAME Adempiere_393LTS.tar.gz
 
 #Health Check
