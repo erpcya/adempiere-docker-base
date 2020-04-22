@@ -23,11 +23,13 @@ then
 	sed -i "s/ADEMPIERE_DB_SYSTEM=postgres/ADEMPIERE_DB_SYSTEM=$ADEMPIERE_DB_ADMIN_PASSWORD/g" AdempiereEnv.properties
 	sed -i "s/ADEMPIERE_WEB_ALIAS=localhost/ADEMPIERE_WEB_ALIAS=$(hostname)/g" AdempiereEnv.properties
 	sed -i "s/ADEMPIERE_APPS_SERVER=localhost/ADEMPIERE_APPS_SERVER=$(hostname)/g" AdempiereEnv.properties
+    sed -i "s/ADEMPIERE_WEB_PORT=8888/ADEMPIERE_WEB_PORT=$ADEMPIERE_WEB_PORT/g" AdempiereEnv.properties
+    sed -i "s/ADEMPIERE_SSL_PORT=4444/ADEMPIERE_SSL_PORT=$ADEMPIERE_SSL_PORT/g" AdempiereEnv.properties
 	sh RUN_silentsetup.sh
 	
 	echo "ISSETUP=Y" >> /etc/profile
 	echo "export ISSETUP" >> /etc/profile 
 fi
 
-service adempiere start && tail -f /dev/null
+sh $ADEMPIERE_HOME/utils/RUN_Server2.sh && tail -f /dev/null
 exit 0
