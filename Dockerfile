@@ -31,6 +31,7 @@ WORKDIR $ADEMPIERE_HOME
 RUN echo "Install needed packages..." && \
 	apk --no-cache add sed && \
 	apk --no-cache add wget && \
+	apk --no-cache add ttf-dejavu && \
 	echo "Get ADempiere Binary..."  && \
 	cd $OPT_DIR && \
 	wget -c $ADEMPIERE_RELEASE_URL/$ADEMPIERE_RELEASE_NAME/$ADEMPIERE_BINARY_NAME && \
