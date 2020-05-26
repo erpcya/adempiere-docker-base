@@ -21,10 +21,6 @@ ENV ADEMPIERE_SERVICE_TYPE jboss
 EXPOSE $ADEMPIERE_WEB_PORT
 EXPOSE $ADEMPIERE_SSL_PORT
 
-#Health Check
-HEALTHCHECK --interval=3m --timeout=3s --retries=3 \
-  CMD curl -f http://$(hostname):$ADEMPIERE_WEB_PORT/ || exit 1
-
 #Set Workdir
 WORKDIR $ADEMPIERE_HOME
 
