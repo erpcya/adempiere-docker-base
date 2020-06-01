@@ -2,6 +2,10 @@ FROM openjdk:8-jdk
 MAINTAINER Yamel Senih "ysenih@erpya.com"
 COPY start-adempiere.sh /opt/
 
+# Set Codification
+ENV LANG=es_ES.UTF-8
+ENV LANGUAGE=es_ES.UTF-8
+
 ENV ADEMPIERE_DB_HOST localhost
 ENV ADEMPIERE_DB_PORT 5432
 ENV ADEMPIERE_DB_NAME ADempiereSeed
