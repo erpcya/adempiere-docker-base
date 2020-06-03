@@ -17,7 +17,7 @@ ENV ADEMPIERE_SSL_PORT 4443
 ENV OPT_DIR /opt
 ENV ADEMPIERE_HOME /opt/Adempiere
 ENV ADEMPIERE_RELEASE_URL https://github.com/erpcya/adempiere/releases/download
-ENV ADEMPIERE_RELEASE_NAME 3.9.3-rs-1.6
+ENV ADEMPIERE_RELEASE_NAME 3.9.3-rs-1.7
 ENV ADEMPIERE_BINARY_NAME Adempiere_393LTS.tar.gz
 ENV ADEMPIERE_SERVICE_TYPE jboss
 
@@ -30,10 +30,10 @@ WORKDIR $ADEMPIERE_HOME
 
 RUN cd $OPT_DIR && \
 	wget -c $ADEMPIERE_RELEASE_URL/$ADEMPIERE_RELEASE_NAME/$ADEMPIERE_BINARY_NAME && \
-	echo "De-compress ADempiere Binary..." && \ 
+	echo "De-compress ADempiere Binary..." && \
 	tar -C $OPT_DIR -zxvf $ADEMPIERE_BINARY_NAME && \
 	echo "Setting Directories and access..." && \
-	cd $ADEMPIERE_HOME && \ 
+	cd $ADEMPIERE_HOME && \
 	chmod -Rf 755 *.sh && \
 	chmod -Rf 755 utils/*.sh && \
 	chmod +x $OPT_DIR/start-adempiere.sh && \
