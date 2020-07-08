@@ -45,7 +45,6 @@ RUN echo "Install needed packages..." && \
 	cp AdempiereEnvTemplate.properties AdempiereEnv.properties && \
 	sed -i "s@ADEMPIERE_HOME=C.*@ADEMPIERE_HOME=$ADEMPIERE_HOME@" AdempiereEnv.properties && \
 	sed -i "s@JAVA_HOME=C.*@JAVA_HOME=$JAVA_HOME@" AdempiereEnv.properties && \
-	sed -i "s/-Xms64M -Xmx512M/$ADEMPIERE_JAVA_OPTIONS/g" AdempiereEnv.properties && \
 	sed -i "s/ADEMPIERE_KEYSTORE=C*/ADEMPIERE_KEYSTORE=\/data\/app\/Adempiere\/keystore\/myKeystore/g" AdempiereEnv.properties && \
 	echo "Remove Compress Binary..." && \
 	rm $OPT_DIR/$ADEMPIERE_BINARY_NAME  && \
